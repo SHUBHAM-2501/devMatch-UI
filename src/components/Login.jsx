@@ -9,22 +9,26 @@ export default function Login(){
 
     const [emailId, setEmailId] = useState("dhoni@gmail.com");
     const [password, setPassword] = useState("Dhoni@123");
+    const [error, setError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogin = async()=>{
-        try{
-            const res = await axios.post(BASE_URL+"/login", {
-                emailId,
-                password,
-            },
-        {withCredentials:true});
-        dispatch(addUser(res.data));
-        return navigate("/");
-        }catch(err){
-            console.log(err);
-        }
-    };
+     const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          emailId,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data));
+      navigate("/"); 
+    } catch (err) {
+      setError(err.response.data); 
+    }
+  };
 
     return<>
     <div className="flex justify-center my-10"> 
@@ -48,6 +52,7 @@ export default function Login(){
    />
 </fieldset>
     </div>
+    <p className="text-red-500">{error}</p>
     <div className="card-actions justify-center">
       <button className="btn btn-primary" onClick={handleLogin}>Login</button>
     </div>
