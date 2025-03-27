@@ -9,7 +9,7 @@ import {BASE_URL} from "../utils/constants";
 
 export default function Body() {
   const dispatch = useDispatch();
-  const userData = useSelector((store) => store.user);
+  let userData = useSelector((store) => store.user);
   const navigate = useNavigate();
 
   const fetchUser = async () => {

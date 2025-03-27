@@ -47,7 +47,7 @@ return (
                                 </p>}
                           </div>
                           <div className="ml-auto">
-                                <button className="btn btn-primary">Get Started</button>
+                                <button className="btn btn-primary">Chat</button>
                           </div>
                      </div>
                 </div>

@@ -4,21 +4,21 @@ import { BASE_URL } from "../utils/constants";
 import { removeUserFromFeed } from "../utils/feedSlice";
 import { use, useEffect } from "react";
 
-export default function UserCard(user) {
-  const { _id, firstName, lastName, about, skills, age, gender } = user.user;
+export default function UserCard({ user }) {  // Fix destructuring here
+  const { _id, firstName, lastName, about, skills, age, gender, photoUrl } = user;
   
   const dispatch = useDispatch();
 
-  const handleSendRequest = async (status, _id) => {
+  const handleSendRequest = async (status, userId) => {
     try {
       const res = await axios.post(
-        BASE_URL + "/request/send/" + status + "/" +_id,
+        BASE_URL + "/request/send/" + status + "/" + userId,
         {},
         { withCredentials: true }
       );
       console.log(res);
-      console.log(_id);
-      dispatch(removeUserFromFeed(_id));
+      console.log(userId);
+      dispatch(removeUserFromFeed(userId));
       
     } catch (err) {
     }
@@ -28,7 +28,7 @@ export default function UserCard(user) {
     <>
       <div className="card bg-base-300 w-96 shadow-sm">
         <figure>
-          <img src={user.user.photoUrl} alt="photo" />
+          <img src={photoUrl} alt="photo" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{firstName + " " + lastName}</h2>
