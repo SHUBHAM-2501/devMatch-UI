@@ -28,26 +28,28 @@ export default function Connections() {
 
 return (
     <>
-    <h1 className="text-center font-serif my-2  text-4xl">Connections</h1>
-    <div className="flex flex-col items-center gap-4 mt-4">
+    <h1 className="text-center font-serif my-2 text-4xl">Connections</h1>
+    <div className="flex flex-col items-center gap-4 mt-4 px-4 w-full max-w-4xl mx-auto">
           {connections.map((connection) => (
-                <div key={connection._id} className="hero bg-base-200 w-150 h-40 shadow-md rounded-lg flex items-center">
-                     <div className="hero-content flex-col lg:flex-row items-center w-full">
-                          <img
-                                src={connection.photoUrl}
-                                className="w-16 h-16 rounded-full shadow-lg"
-                                alt="Connection" />
-                          <div className="ml-10 text-center flex-grow">
-                                <h1 className="text-xl font-bold">{connection.firstName}</h1>
-                                <p className="text-m text-gray-300">
-                                     {connection.about || "No description available"}
-                                </p>
-                                {connection.age && connection.gender && <p className="text-m text-gray-300">
-                                     {connection.age + " " + connection.gender}
-                                </p>}
+                <div key={connection._id} className="bg-base-200 shadow-md rounded-lg w-full">
+                     <div className="p-4 flex flex-col sm:flex-row items-center justify-between w-full gap-3">
+                          <div className="flex flex-col sm:flex-row items-center gap-4">
+                               <img
+                                     src={connection.photoUrl}
+                                     className="w-16 h-16 rounded-full shadow-lg"
+                                     alt="Connection" />
+                               <div className="text-center sm:text-left">
+                                    <h1 className="text-xl font-bold">{connection.firstName}</h1>
+                                    <p className="text-sm text-gray-300 line-clamp-1">
+                                         {connection.about || "No description available"}
+                                    </p>
+                                    {connection.age && connection.gender && <p className="text-sm text-gray-300">
+                                         {connection.age + " " + connection.gender}
+                                    </p>}
+                               </div>
                           </div>
-                          <div className="ml-auto">
-                                <button className="btn btn-primary">Chat</button>
+                          <div className="mt-2 sm:mt-0">
+                               <button className="btn btn-primary">Chat</button>
                           </div>
                      </div>
                 </div>

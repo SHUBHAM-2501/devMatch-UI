@@ -43,43 +43,47 @@ export default function Requests() {
 
   return (
     <>
-      <h1 className="text-center font-serif my-2 text-4xl">Requests</h1>
-      <div className="flex flex-col items-center gap-4 mt-4">
+      <h1 className="text-center font-serif my-2 text-2xl md:text-4xl">Requests</h1>
+      <div className="flex flex-col items-center gap-4 mt-4 px-4 max-w-4xl mx-auto">
         {requests.map((request) => {
           const { _id, firstName, lastName, photoUrl, age, gender, about } =
             request.fromUserId;
           return (
             <div
               key={_id}
-              className="hero bg-base-200 w-150 h-40 shadow-md rounded-lg flex items-center p-4"
+              className="bg-base-200 shadow-md rounded-lg flex flex-col sm:flex-row w-full"
             >
-              <img
-                src={photoUrl}
-                className="w-16 h-16 rounded-full shadow-lg"
-                alt="Request"
-              />
-              <div className="ml-10">
-                <h1 className="text-xl font-bold">{firstName}</h1>
-                <p className="text-m text-gray-300">
-                  {about || "No description available"}
-                </p>
-                {age && gender && (
-                  <p className="text-m text-gray-300">{age + " " + gender}</p>
-                )}
-              </div>
-              <div className="ml-auto">
-                <button
-                  className="btn btn-primary mx-2"
-                  onClick={() => reviewRequest("accepted", request._id)}
-                >
-                  Accept
-                </button>
-                <button
-                  className="btn btn-secondary mx-2"
-                  onClick={() => reviewRequest("rejected", request._id)}
-                >
-                  Reject
-                </button>
+              <div className="p-4 flex flex-col sm:flex-row items-center w-full gap-3">
+                <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
+                  <img
+                    src={photoUrl}
+                    className="w-16 h-16 rounded-full shadow-lg"
+                    alt="Request"
+                  />
+                  <div className="text-center sm:text-left mt-2 sm:mt-0">
+                    <h1 className="text-xl font-bold">{firstName} {lastName}</h1>
+                    <p className="text-sm text-gray-300 line-clamp-2">
+                      {about || "No description available"}
+                    </p>
+                    {age && gender && (
+                      <p className="text-sm text-gray-300">{age + " • " + gender}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex gap-2 mt-4 sm:mt-0 sm:ml-auto justify-center sm:justify-end">
+                  <button
+                    className="btn btn-primary btn-sm sm:btn-md"
+                    onClick={() => reviewRequest("accepted", request._id)}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm sm:btn-md"
+                    onClick={() => reviewRequest("rejected", request._id)}
+                  >
+                    Reject
+                  </button>
+                </div>
               </div>
             </div>
           );
