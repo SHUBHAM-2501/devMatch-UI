@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils/constants";
 import { removeUserFromFeed } from "../utils/feedSlice";
 import { use, useEffect } from "react";
 
-export default function UserCard({ user }) {  // Fix destructuring here
+export default function UserCard({ user }) { 
   const { _id, firstName, lastName, about, skills, age, gender, photoUrl } = user;
   
   const dispatch = useDispatch();
@@ -16,8 +16,6 @@ export default function UserCard({ user }) {  // Fix destructuring here
         {},
         { withCredentials: true }
       );
-      console.log(res);
-      console.log(userId);
       dispatch(removeUserFromFeed(userId));
       
     } catch (err) {

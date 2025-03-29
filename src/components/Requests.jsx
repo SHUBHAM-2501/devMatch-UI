@@ -26,7 +26,6 @@ export default function Requests() {
       const res = await axios.get(BASE_URL + "/user/requests/received", {
         withCredentials: true,
       });
-      console.log(res.data.data);
       dispatch(addRequests(res.data.data));
     } catch (err) {
       console.error(err.message);

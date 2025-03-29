@@ -17,7 +17,6 @@ const EditProfile = ({ user }) => {
   const [showToast, setShowToast] = useState(false);
 
   const saveProfile = async () => {
-    //Clear Errors
     setError("");
     try {
       const res = await axios.patch(
